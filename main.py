@@ -1,17 +1,17 @@
 def ordinalSuffix(number):
-    numberList = list(str(number))
     suffix = str(number)
 
-    if number >=4 and  number <=19:
+    # I have to check the last two digit to be sure to add the right suffix (213 is 213st not 213rd)
+    if str(number)[-2:] == "11" or str(number)[-2:] == "12" or str(number)[-2:] == "13":
         suffix = suffix + "th"
-    elif numberList[-1] == "0":
-        suffix = suffix + "th"
-    elif numberList[-1] == "1":
+    elif str(number)[-1:] == "1":
         suffix = suffix + "st"
-    elif numberList[-1] == "2":
+    elif str(number)[-1:] == "2":
         suffix = suffix + "nd"
-    elif numberList[-1] == "3":
+    elif str(number)[-1:] == "3":
         suffix = suffix + "rd"
+    else:
+        suffix = suffix + "th"
 
     return suffix
 
@@ -26,3 +26,4 @@ assert ordinalSuffix(12) == '12th'
 assert ordinalSuffix(13) == '13th'
 assert ordinalSuffix(14) == '14th'
 assert ordinalSuffix(101) == '101st'
+assert ordinalSuffix(213) == '213th'
